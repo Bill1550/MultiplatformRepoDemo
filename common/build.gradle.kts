@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.multiplatform")
-//    id("org.jetbrains.kotlin.native.cocoapods")
+    id("org.jetbrains.kotlin.native.cocoapods")
     id("kotlinx-serialization")
 //    id("com.squareup.sqldelight")
 }
@@ -16,6 +16,26 @@ plugins {
 //}
 
 kotlin {
+
+    cocoapods {
+        summary = "Shared module for Android and iOS"
+        homepage = "Link to a Kotlin/Native module homepage"
+    }
+
+    val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
+        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
+            ::iosArm64
+        else
+            ::iosX64
+
+    iOSTarget("ios") {
+        compilations {
+            val main by getting {
+                kotlinOptions.freeCompilerArgs = listOf("-Xobjc-generics")
+            }
+        }
+    }
+
     android()
 
     sourceSets["commonMain"].dependencies {
@@ -26,6 +46,15 @@ kotlin {
         implementation("io.ktor:ktor-client-serialization:1.2.6")
         implementation("io.ktor:ktor-client-core:1.2.6")
         implementation("com.squareup.sqldelight:runtime:1.2.1")
+    }
+
+    sourceSets["iosMain"].dependencies {
+        implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.3")
+        implementation("io.ktor:ktor-client-json-native:1.2.6")
+        implementation("io.ktor:ktor-client-serialization-native:1.2.6")
+        implementation("io.ktor:ktor-client-ios:1.2.6")
+        implementation("com.squareup.sqldelight:ios-driver:1.2.1")
     }
 }
 
