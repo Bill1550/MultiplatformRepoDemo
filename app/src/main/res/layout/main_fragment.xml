@@ -12,9 +12,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MainFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/statesButton"
+        />
+
+    <Button
+        android:id="@+id/statesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        android:text="@string/button_label_states"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

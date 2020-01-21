@@ -29,6 +29,20 @@ kotlin {
     }
 }
 
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3")
+    implementation("io.ktor:ktor-client-json-jvm:1.2.6")
+    implementation("io.ktor:ktor-client-serialization-jvm:1.2.6")
+    implementation("io.ktor:ktor-client-android:1.2.6")
+    implementation("com.squareup.sqldelight:android-driver:1.2.1")
+
+    // LiveData and ViewModel
+    val lifecycleVersion = "2.2.0-rc03"
+    implementation("androidx.lifecycle:lifecycle-extensions:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion")
+}
+
 android {
     compileSdkVersion(29)
     defaultConfig {
@@ -56,4 +70,8 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+//    packagingOptions {
+//        pickFirst("META-INF/kotlinx-serialization-runtime.kotlin_module")
+//    }
 }

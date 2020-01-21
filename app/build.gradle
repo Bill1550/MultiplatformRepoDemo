@@ -21,17 +21,38 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        pickFirst 'META-INF/kotlinx-serialization-runtime.kotlin_module'
+        pickFirst 'META-INF/ktor-client-serialization.kotlin_module'
+        pickFirst 'META-INF/ktor-http.kotlin_module'
+        pickFirst 'META-INF/kotlinx-io.kotlin_module'
+        pickFirst 'META-INF/atomicfu.kotlin_module'
+        pickFirst 'META-INF/ktor-utils.kotlin_module'
+        pickFirst 'META-INF/kotlinx-coroutines-io.kotlin_module'
+        pickFirst 'META-INF/kotlinx-coroutines-core.kotlin_module'
+        pickFirst 'META-INF/ktor-http-cio.kotlin_module'
+        pickFirst 'META-INF/ktor-client-json.kotlin_module'
+        pickFirst 'META-INF/ktor-client-core.kotlin_module'
+
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':common')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.appcompat:appcompat:$versions.androidx.appcompat"
     implementation "androidx.core:core-ktx:$versions.androidx.core"
     implementation "androidx.constraintlayout:constraintlayout:$versions.androidx.constraintlayout"
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.androidx.lifecycle_extensions"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.androidx.lifecycle_viewmodel"
+    implementation "androidx.lifecycle:lifecycle-common-java8:$versions.androidx.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$versions.androidx.lifecycle_runtime"
+
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
+

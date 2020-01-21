@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">RepoDemo</string>
+    <string name="button_label_states">States</string>
 </resources>

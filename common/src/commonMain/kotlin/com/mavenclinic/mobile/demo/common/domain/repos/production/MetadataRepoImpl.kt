@@ -10,7 +10,7 @@ class MetadataRepoImpl : MetadataRepo {
     private val stateCache = SuspendingCache<Map<String,State>>(::fetchUsStates)
 
     override suspend fun getUsStates(): Map<String, State> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return stateCache.get()
     }
 
 
